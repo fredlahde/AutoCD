@@ -1,5 +1,4 @@
 apply plugin: 'java'
-apply plugin: 'checkstyle'
 
 
 group 'de.worldiety'
@@ -11,28 +10,6 @@ repositories {
     mavenCentral()
 }
 
-checkstyle {
-    maxErrors = 0
-    ignoreFailures = false
-    toolVersion '8.22'
-    config project.resources.text.fromUri("https://cdn.worldiety.org/worldiety/linting/checkstyle/style-latest.xml")
-}
-
-tasks.withType(Checkstyle) {
-    showViolations = true
-
-    checkstyleMain {
-
-        source 'src/main/java'
-        include '**/*.java'
-
-        ignoreFailures = false
-
-        classpath = files()
-    }
-
-}
-compileJava.dependsOn(checkstyleMain)
 
 sourceSets {
     main {
@@ -59,7 +36,6 @@ dependencies {
     // https://mvnrepository.com/artifact/org.jetbrains/annotations
     compile group: 'org.jetbrains', name: 'annotations', version: '17.0.0'
     // https://mvnrepository.com/artifact/com.github.docker-java/docker-java
-    compile group: 'com.puppycrawl.tools', name: 'checkstyle', version: '8.22'
     compile group: 'com.github.docker-java', name: 'docker-java', version: '3.1.5'
     compile group: 'javax.activation', name: 'activation', version: '1.1.1'
     compile group: 'com.sun.mail', name: 'javax.mail', version: '1.6.2'
@@ -69,5 +45,4 @@ dependencies {
     // https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12
     compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
     compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.25'
-    compile group: 'com.puppycrawl.tools', name: 'checkstyle', version: '8.22'
 }
