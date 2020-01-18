@@ -66,6 +66,8 @@ public class Main {
 
         DockerfileHandler finder = new DockerfileHandler(".");
 
+        System.out.println("CI_PROJECT_NAME: " + System.getenv(Environment.CI_PROJECT_NAME.toString()));
+        System.exit(0);
 
         //Creat the k8s client, CoreV1Api is needed for the client
         CoreV1Api patchApi = new CoreV1Api(strategicMergePatchClient);
